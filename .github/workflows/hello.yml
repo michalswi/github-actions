@@ -1,4 +1,4 @@
-name: hello world
+name: Hi Dude
 
 on:
   push:
@@ -9,5 +9,5 @@ jobs:
   hello:
     runs-on: ubuntu-18.04
     steps:
-      - name: Hello World!
-        run: echo "Hello World!"
+      - name: hi dude
+        run: echo "Hi Dude!"
