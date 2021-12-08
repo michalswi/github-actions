@@ -32,6 +32,6 @@ jobs:
       #   ls -la
     
     - name: Test
-      run: make tes
+      run: make test
       # run: |
       #   go test -v ./...
