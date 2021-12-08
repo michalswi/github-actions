@@ -1,4 +1,4 @@
-name: Test GO code across matrix
+name: Test GO code
 
 on:
   push:
