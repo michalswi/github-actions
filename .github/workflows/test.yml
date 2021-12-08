@@ -26,10 +26,12 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build
-      run: |
-        go build -v ./...
-        ls -la
+      run: make build
+      # run: |
+      #   go build -v ./...
+      #   ls -la
     
     - name: Test
-      run: |
-        go test -v ./...
+      run: make test
+      # run: |
+      #   go test -v ./...
