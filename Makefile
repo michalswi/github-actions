@@ -25,8 +25,8 @@ build: ## build
 	-o $(APPNAME)-$(VERSION) .
 
 lint: ## lint
-	golangci-lint run
-	# golangci-lint run --timeout=5m
+	# golangci-lint run
+	golangci-lint run --timeout=5m
 
 test: ## test
 	go test -v ./...
