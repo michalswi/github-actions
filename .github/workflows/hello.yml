@@ -3,11 +3,12 @@ name: learn
 on:
   push:
     branches:
-      - master
+      - main
+      - develop
 
 jobs:
   hello:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - name: hi dude
         run: echo "Hi Dude!"

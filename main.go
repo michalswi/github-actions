@@ -2,6 +2,11 @@ package main
 
 import "fmt"
 
+func main() {
+	user := Name("John")
+	fmt.Println(user)
+}
+
 func Name(name string) string {
 	if len(name) == 0 {
 		return "noname"
@@ -9,8 +14,4 @@ func Name(name string) string {
 		return fmt.Sprintf("Hi %s", name)
 	}
 
-}
-func main() {
-	user := Name("John")
-	fmt.Println(user)
 }
