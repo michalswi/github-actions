@@ -24,5 +24,13 @@ build: ## build
 	-X '$(GIT_REPO)/version.LastCommitTime=$(LAST_COMMIT_TIME)'" \
 	-o $(APPNAME)-$(VERSION) .
 
+lint: ## lint
+	# golangci-lint run
+	golangci-lint run --timeout=5m
+
 test: ## test
 	go test -v ./...
+
+coverage: ## coverage
+	go test ./... -coverprofile=coverage.out
+	go tool cover -func coverage.out
