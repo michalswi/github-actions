@@ -7,7 +7,7 @@ LAST_COMMIT_HASH ?= $(shell git log -1 --format=%H)
 LAST_COMMIT_TIME ?= $(shell git log -1 --format=%cd --date=format:'%Y-%m-%d %H:%M:%S')
 
 .DEFAULT_GOAL := help
-.PHONY: build test
+.PHONY: build lint test coverage version
 
 help:
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n\nTargets:\n"} /^[a-zA-Z_-]+:.*?##/ \
@@ -34,3 +34,6 @@ test: ## test
 coverage: ## coverage
 	go test ./... -coverprofile=coverage.out
 	go tool cover -func coverage.out
+
+version: ## version
+	./$(APPNAME)-$(VERSION) -v

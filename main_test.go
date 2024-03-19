@@ -4,18 +4,27 @@ import (
 	"testing"
 )
 
-// test Name function
-func TestName(t *testing.T) {
-
-	// test empty arg
-	emptyResult := Name("")
-	if emptyResult != "noname" {
-		t.Errorf("func Name(\"\") failed, expected %v, got %v ", "noname", emptyResult)
+func TestGetName(t *testing.T) {
+	tests := []struct {
+		name string
+		want string
+	}{
+		{"John", "Hi John"},
+		{"", "noname"},
 	}
 
-	// test valid arg
-	result := Name("Mike")
-	if result != "Hi Mike" {
-		t.Errorf("func Name(\"Mike\") failed, expected %v, got %v ", "Hi Mike", result)
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := getName(tt.name); got != tt.want {
+				t.Errorf("getName() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestGetVersion(t *testing.T) {
+	want := "1.0.0"
+	if got := getVersion(); got != want {
+		t.Errorf("getVersion() = %v, want %v", got, want)
 	}
 }
