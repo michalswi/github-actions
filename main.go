@@ -13,6 +13,7 @@ var (
 func main() {
 	flag.BoolVar(&version, "v", false, "Display version")
 	flag.BoolVar(&name, "n", false, "Display name")
+	flag.Parse()
 
 	if name {
 		user := getName("John")
