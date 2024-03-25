@@ -1,0 +1,47 @@
+name: Create Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: |
+          # Add your build commands here
+          dd if=/dev/zero of=./artifact.zip bs=1M count=1
+
+      - name: Check for release keyword
+        id: check
+        run: echo ::set-output name=release::$(if echo '${{ github.event.head_commit.message }}' | grep -q '\[release\]'; then echo 'true'; else echo 'false'; fi)
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        if: steps.check.outputs.release == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.sha }}
+          release_name: Release ${{ github.sha }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload_release_asset
+        uses: actions/upload-release-asset@v1
+        if: steps.check.outputs.release == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./artifact.zip
+          asset_name: artifact.zip
+          asset_content_type: application/zip
